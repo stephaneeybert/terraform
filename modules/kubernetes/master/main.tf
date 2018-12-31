@@ -73,4 +73,12 @@ resource "null_resource" "kubernetes-master" {
       MASTER_IP = "${var.IPV4_ADDRESS}"
     }
   }
+
+  provisioner "local-exec" {
+    command = "${path.module}/scripts/configure-kubectl.sh"
+
+    environment {
+      MASTER_IP = "${var.IPV4_ADDRESS}"
+    }
+  }
 }
