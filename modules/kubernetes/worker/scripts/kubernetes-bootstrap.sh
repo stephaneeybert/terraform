@@ -1,0 +1,1 @@
+/home/stephane/dev/terraform/modules/kubernetes/master/scripts/kubernetes-bootstrap.sh
