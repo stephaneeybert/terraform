@@ -1,4 +1,6 @@
-echo Bootstrapping Kubernetes
+#!/bin/sh -x
+
+echo "Bootstrapping Kubernetes"
 
 apt-get update && apt-get install -y apt-transport-https
 curl -s https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -

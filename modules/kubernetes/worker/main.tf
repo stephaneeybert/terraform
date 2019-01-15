@@ -18,7 +18,7 @@ resource "null_resource" "kubernetes-worker" {
   provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
-      "kubeadm join '${var.K8S_MASTER_IPV4_ADDRESS}:6443' --token ${var.K8S_TOKEN} --discovery-token-unsafe-skip-ca-verification",
+      "kubeadm join '${var.K8S_MASTER_IPV4_ADDRESS}:6443' --token '${var.K8S_TOKEN}' --discovery-token-unsafe-skip-ca-verification",
     ]
   }
 }

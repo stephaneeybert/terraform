@@ -1,4 +1,6 @@
-echo Configuring a cluster in the client
+#!/bin/sh -x
+
+echo "Configuring a cluster in the client"
 
 cd
 mkdir -p .kube

@@ -8,8 +8,8 @@ module "droplet-master" {
 
 module "kubernetes-master" {
   #  source       = "git::https://github.com/stephaneeybert/terraform.git//modules/kubernetes/master"
-  source       = "/home/stephane/dev/terraform/modules/kubernetes/master"
+  source          = "/home/stephane/dev/terraform/modules/kubernetes/master"
   SSH_PRIVATE_KEY = "${var.SSH_PRIVATE_KEY}"
-  IPV4_ADDRESS = "${module.droplet-master.IPV4_ADDRESS}"
-  K8S_TOKEN    = "${var.K8S_TOKEN}"
+  IPV4_ADDRESS    = "${module.droplet-master.IPV4_ADDRESS}"
+  K8S_TOKEN       = "${var.K8S_TOKEN}"
 }
