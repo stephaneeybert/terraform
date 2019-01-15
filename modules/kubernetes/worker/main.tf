@@ -1,6 +1,10 @@
 resource "null_resource" "kubernetes-worker" {
   provisioner "local-exec" {
-    command = "echo Worker ${var.K8S_WORKER_NAME} node has IP ${var.IPV4_ADDRESS}"
+    command = "echo Worker node ${var.K8S_WORKER_NAME} has IP ${var.IPV4_ADDRESS}"
+  }
+
+  provisioner "local-exec" {
+    command = "echo Worker node ${var.K8S_WORKER_NAME} has K8S_TOKEN ${var.K8S_TOKEN}"
   }
 
   connection {

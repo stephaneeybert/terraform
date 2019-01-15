@@ -3,6 +3,10 @@ resource "null_resource" "kubernetes-master" {
     command = "echo Master node has IP ${var.IPV4_ADDRESS}"
   }
 
+  provisioner "local-exec" {
+    command = "echo Master node has K8S_TOKEN ${var.K8S_TOKEN}"
+  }
+
   connection {
     host        = "${var.IPV4_ADDRESS}"
     user        = "root"
