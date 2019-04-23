@@ -116,5 +116,6 @@ resource "null_resource" "kubernetes-master" {
   }
 
   provisioner "local-exec" {
+    command = "helm init --service-account tiller"
   }
 }
