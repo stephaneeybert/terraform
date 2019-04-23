@@ -98,9 +98,21 @@ resource "null_resource" "kubernetes-master" {
     ]
   }
 
+  provisioner "file" {
+    source      = "${path.module}/scripts/create-role-tiller-manager.yml"
+    destination = "/tmp/create-role-tiller-manager.yml"
   }
 
+  provisioner "file" {
+    source      = "${path.module}/scripts/create-role-binding-tiller.yml"
+    destination = "/tmp/create-role-binding-tiller.yml"
+  }
 
+  provisioner "remote-exec" {
+    inline = [
+      "kubectl create serviceaccount tiller --namespace digital-ocean-namespace",
+      "kubectl create -f /tmp/create-role-binding-tiller.yml",
+    ]
   }
 
   provisioner "local-exec" {
