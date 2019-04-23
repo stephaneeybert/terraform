@@ -45,23 +45,6 @@ resource "null_resource" "kubernetes-master" {
     script = "${path.module}/scripts/create-namespace.sh"
   }
 
-  provisioner "file" {
-    source      = "${path.module}/scripts/create-role-deployment-manager.yml"
-    destination = "/tmp/create-role-deployment-manager.yml"
-  }
-
-  provisioner "file" {
-    source      = "${path.module}/scripts/create-role-binding-deployment-manager.yml"
-    destination = "/tmp/create-role-binding-deployment-manager.yml"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "kubectl create -f /tmp/create-role-deployment-manager.yml",
-      "kubectl create -f /tmp/create-role-binding-deployment-manager.yml",
-    ]
-  }
-
   provisioner "local-exec" {
     command = "${path.module}/scripts/configure-cluster.sh"
 
@@ -84,5 +67,30 @@ resource "null_resource" "kubernetes-master" {
     environment {
       MASTER_IP = "${var.IPV4_ADDRESS}"
     }
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/scripts/create-role-deployment-manager.yml"
+    destination = "/tmp/create-role-deployment-manager.yml"
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/scripts/create-role-binding-deployment-manager.yml"
+    destination = "/tmp/create-role-binding-deployment-manager.yml"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "kubectl create -f /tmp/create-role-deployment-manager.yml",
+      "kubectl create -f /tmp/create-role-binding-deployment-manager.yml",
+    ]
+  }
+
+  }
+
+
+  }
+
+  provisioner "local-exec" {
   }
 }
