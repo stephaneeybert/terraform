@@ -79,10 +79,22 @@ resource "null_resource" "kubernetes-master" {
     destination = "/tmp/create-role-binding-deployment-manager.yml"
   }
 
+  provisioner "file" {
+    source      = "${path.module}/scripts/create-cluster-role-admin.yml"
+    destination = "/tmp/create-cluster-role-admin.yml"
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/scripts/create-role-binding-admin.yml"
+    destination = "/tmp/create-role-binding-admin.yml"
+  }
+
   provisioner "remote-exec" {
     inline = [
       "kubectl create -f /tmp/create-role-deployment-manager.yml",
       "kubectl create -f /tmp/create-role-binding-deployment-manager.yml",
+      "kubectl create -f /tmp/create-cluster-role-admin.yml",
+      "kubectl create -f /tmp/create-role-binding-admin.yml",
     ]
   }
 
