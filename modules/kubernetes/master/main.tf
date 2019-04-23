@@ -116,6 +116,6 @@ resource "null_resource" "kubernetes-master" {
   }
 
   provisioner "local-exec" {
-    command = "helm init --service-account tiller"
+    command = "helm init --service-account tiller --tiller-namespace digital-ocean-namespace"
   }
 }
